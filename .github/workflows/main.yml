@@ -11,7 +11,6 @@ jobs:
         run: |
           docker pull langgenius/dify-api:1.11.2
           docker pull langgenius/dify-web:1.11.2
-          docker pull langgenius/dify-worker:1.11.2
           docker pull langgenius/dify-sandbox:0.2.12
           docker pull langgenius/dify-plugin-daemon:0.5.2-local
 
@@ -20,7 +19,6 @@ jobs:
           docker save \
             langgenius/dify-api:1.11.2 \
             langgenius/dify-web:1.11.2 \
-            langgenius/dify-worker:1.11.2 \
             langgenius/dify-sandbox:0.2.12 \
             langgenius/dify-plugin-daemon:0.5.2-local \
             -o dify-images.tar
