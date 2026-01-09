@@ -1,0 +1,32 @@
+name: Pull Dify Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull images
+        run: |
+          docker pull langgenius/dify-api:1.11.2
+          docker pull langgenius/dify-web:1.11.2
+          docker pull langgenius/dify-worker:1.11.2
+          docker pull langgenius/dify-sandbox:0.2.12
+          docker pull langgenius/dify-plugin-daemon:0.5.2-local
+
+      - name: Save images
+        run: |
+          docker save \
+            langgenius/dify-api:1.11.2 \
+            langgenius/dify-web:1.11.2 \
+            langgenius/dify-worker:1.11.2 \
+            langgenius/dify-sandbox:0.2.12 \
+            langgenius/dify-plugin-daemon:0.5.2-local \
+            -o dify-images.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dify-images
+          path: dify-images.tar
